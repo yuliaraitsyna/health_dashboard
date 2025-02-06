@@ -11,7 +11,7 @@ export default async function Page() {
     console.log(users, records)
   return (
     <Suspense fallback={<Loading />}>
-        <h1>Dashboard</h1>
+        
     </Suspense>
   )
 }

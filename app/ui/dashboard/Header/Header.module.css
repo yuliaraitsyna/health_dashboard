@@ -1,0 +1,9 @@
+.header {
+    padding: 10px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.logo {
+    display: flex;
+    gap: 10px;
+}
