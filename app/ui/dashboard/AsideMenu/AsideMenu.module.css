@@ -9,8 +9,8 @@
     padding-top: 10px;
     border-right: solid 1px var(--shadow-color);
     transition: width 0.5s ease-in-out;
-    background-color: var(--background-color);
     overflow: hidden;
+    background-color: white;
 }
 
 .menu.closed {

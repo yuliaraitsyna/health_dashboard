@@ -1,0 +1,20 @@
+.authorWidget {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.authorWidget > p {
+    text-align: justify;
+}
+
+.authorWidget > span {
+    color: hotpink;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    align-self: flex-end;
+}

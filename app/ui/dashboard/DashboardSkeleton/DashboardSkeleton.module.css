@@ -1,0 +1,29 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+.widget {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 200px;
+    box-shadow: 0 1px 3px 1px var(--shadow-color);
+}
+
+.widgetLarge {
+    grid-column: span 2;
+    grid-row: span 2;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 1px 3px 1px var(--shadow-color);
+}
+
+.widgetWide {
+    grid-column: span 2;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 1px var(--shadow-color);
+}

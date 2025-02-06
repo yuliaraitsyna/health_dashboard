@@ -1,0 +1,10 @@
+.heartWidget {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.heartWidget > p {
+    text-align: justify;
+}
