@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { fetchUserHeartRateRecords, fetchUsers } from '../lib/database';
+import Loading from './loading';
 
 export default async function Page() {
     const [users, records] = await Promise.all([
@@ -9,6 +10,8 @@ export default async function Page() {
 
     console.log(users, records)
   return (
-    <div>page</div>
+    <Suspense fallback={<Loading />}>
+        <h1>Dashboard</h1>
+    </Suspense>
   )
 }
