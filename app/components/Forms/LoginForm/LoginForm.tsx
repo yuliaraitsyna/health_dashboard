@@ -6,22 +6,38 @@ import React from 'react'
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { LoginFormInputs } from './LoginForm.types';
+import { loginAction } from '@/app/actions/auth';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const router = useRouter();
+
   const {
     register,
     formState: { errors }
   } = useForm<LoginFormInputs>();
 
+  const handleSubmit = async (formData: FormData) => {
+    const result = await loginAction(formData);
+
+    if (result?.error) {
+        alert(result.error);
+    } else {
+        console.log(result.success);
+        router.push("/dashboard");
+    }
+  };
+
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} action={handleSubmit}>
       <TextField
-        {...register('username', { required: 'Username is required' })}
-        label="Username"
-        type="text"
+        {...register('email', { required: 'Email is required' })}
+        label="Email"
+        type="email"
         fullWidth
-        error={!!errors.username}
-        helperText={errors.username?.message}
+        error={!!errors.email}
+        helperText={errors.email?.message}
         required
       />
       <TextField

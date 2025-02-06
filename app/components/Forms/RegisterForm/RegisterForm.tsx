@@ -7,23 +7,39 @@ import { RegisterFormInputs } from './RegisterForm.types';
 import { useForm } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import { registerAction } from '@/app/actions/auth';
 
 export default function RegisterForm() {
+    const router = useRouter();
+
     const {
         register,
         watch,
         formState: { errors }
     } = useForm<RegisterFormInputs>();
 
+    const handleSubmit = async (formData: FormData) => {
+        const result = await registerAction(formData);
+    
+        if (result?.error) {
+            alert(result.error); // Or handle error state in UI
+        } else {
+            console.log(result.success);
+            router.push("/dashboard"); // Redirect after successful registration
+        }
+    };
+    
+
     return (
-        <form className={styles.form}>
+        <form className={styles.form} action={handleSubmit}>
             <TextField
-                {...register('username', { required: 'Username is required' })}
-                label="Username"
-                type="text"
+                {...register('email', { required: 'Email is required' })}
+                label="Email"
+                type="email"
                 fullWidth
-                error={!!errors.username}
-                helperText={errors.username?.message}
+                error={!!errors.email}
+                helperText={errors.email?.message}
                 required
             />
             <TextField
