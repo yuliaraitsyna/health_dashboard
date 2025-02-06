@@ -1,0 +1,41 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    gap: 30px;
+    padding-top: 10px;
+    border-right: solid 1px var(--shadow-color);
+    transition: width 0.5s ease-in-out;
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+.menu.closed {
+    width: 30px;
+}
+
+.menu nav ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    list-style: none;
+    opacity: 1;
+    max-height: 40px;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.menu.closed nav ul li {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none;
+}
+
+.menu nav ul li:hover {
+    background-color: var(--hover-color);
+}
