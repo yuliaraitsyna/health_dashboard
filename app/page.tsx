@@ -1,5 +1,7 @@
-export default async function Home() {
-  return (
-    <h1>App</h1>
-  );
+'use client'
+
+import LogoutButton from "./components/LogoutButton/LogoutButton";
+
+export default function Dashboard() {
+  return <LogoutButton/>;
 }

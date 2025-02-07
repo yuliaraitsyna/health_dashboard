@@ -19,8 +19,6 @@ export async function loginAction(formData: FormData) {
     const firebaseUid = userCredential.user.uid;
 
     await getUserFromDB(firebaseUid)
-      .then(user => console.log("User from DB:", user))
-      .catch(error => console.error("Error fetching user from DB:", error));
 
     return { success: "Login successful" };
   } catch (error) {
@@ -67,7 +65,9 @@ export async function logoutAction() {
   "use server";
 
   try {
-    await auth.signOut();
+    await auth.signOut()
+    .then(() => console.log("User logged out"))
+    .catch(error => console.error("Error logging out:", error));
     return { success: "Logout successful" };
   } catch (error) {
     console.error("Logout error:", error);

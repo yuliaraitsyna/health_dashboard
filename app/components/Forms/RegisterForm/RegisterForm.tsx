@@ -23,14 +23,10 @@ export default function RegisterForm() {
         const result = await registerAction(formData);
     
         if (result?.error) {
-            alert(result.error); // Or handle error state in UI
-        } else {
-            console.log(result.success);
-            router.push("/dashboard"); // Redirect after successful registration
-        }
-    };
+            alert(result.error);
+        } else router.push('/dashboard');
+    }
     
-
     return (
         <form className={styles.form} action={handleSubmit}>
             <TextField

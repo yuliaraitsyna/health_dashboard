@@ -7,8 +7,11 @@ import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { LoginFormInputs } from './LoginForm.types';
 import { loginAction } from '@/app/actions/auth';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const router = useRouter();
+
   const {
     register,
     formState: { errors }
@@ -21,7 +24,7 @@ export default function LoginForm() {
         alert(result.error);
     }
     else {
-      console.log(result)
+      router.push('/');
     }
   };
 
