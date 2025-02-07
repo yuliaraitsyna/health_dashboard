@@ -7,10 +7,8 @@ import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { LoginFormInputs } from './LoginForm.types';
 import { loginAction } from '@/app/actions/auth';
-import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
-  const router = useRouter();
 
   const {
     register,
@@ -22,9 +20,9 @@ export default function LoginForm() {
 
     if (result?.error) {
         alert(result.error);
-    } else {
-        console.log(result.success);
-        router.push("/dashboard");
+    }
+    else {
+      console.log(result)
     }
   };
 
