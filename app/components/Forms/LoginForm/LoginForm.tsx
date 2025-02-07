@@ -9,7 +9,6 @@ import { LoginFormInputs } from './LoginForm.types';
 import { loginAction } from '@/app/actions/auth';
 
 export default function LoginForm() {
-
   const {
     register,
     formState: { errors }

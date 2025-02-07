@@ -1,7 +1,13 @@
 .form {
-    align-self: center;
+    position: absolute;
+    top: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     width: 50%;
     padding: 20px;
+    max-width: 500px;
 }
 
 .container {
@@ -11,4 +17,8 @@
     height: 95vh;
     align-items: center;
     justify-content: center;
+}
+
+.button {
+    width: 50%;
 }
