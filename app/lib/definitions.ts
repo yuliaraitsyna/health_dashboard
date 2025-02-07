@@ -1,6 +1,6 @@
 export type User = {
-    id: number;
-    username: string;
+    id: string;
+    email: string;
 }
 
 export type HeartRateRecord = {

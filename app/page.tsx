@@ -1,7 +1,22 @@
 'use client'
 
-import LogoutButton from "./components/LogoutButton/LogoutButton";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Dashboard() {
-  return <LogoutButton/>;
+  const { data: session } = useSession()
+
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user?.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    )
+  }
+  return (
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn("google")}>Sign in</button>
+    </>
+  )
 }

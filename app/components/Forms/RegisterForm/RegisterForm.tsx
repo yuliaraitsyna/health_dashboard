@@ -2,33 +2,25 @@
 
 import styles from '../Form.module.css';
 
-import React from 'react'
+import React, { FormEvent } from 'react'
 import { RegisterFormInputs } from './RegisterForm.types';
 import { useForm } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
-import { useRouter } from 'next/navigation';
-import { registerAction } from '@/app/actions/auth';
 
 export default function RegisterForm() {
-    const router = useRouter();
-
     const {
         register,
         watch,
         formState: { errors }
     } = useForm<RegisterFormInputs>();
 
-    const handleSubmit = async (formData: FormData) => {
-        const result = await registerAction(formData);
-    
-        if (result?.error) {
-            alert(result.error);
-        } else router.push('/dashboard');
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
     }
-    
+
     return (
-        <form className={styles.form} action={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
             <TextField
                 {...register('email', { required: 'Email is required' })}
                 label="Email"

@@ -2,35 +2,26 @@
 
 import styles from '../Form.module.css';
 
-import React from 'react'
+import React, { FormEvent } from 'react'
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { LoginFormInputs } from './LoginForm.types';
-import { loginAction } from '@/app/actions/auth';
-import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
-  const router = useRouter();
-
   const {
     register,
     formState: { errors }
   } = useForm<LoginFormInputs>();
 
-  const handleSubmit = async (formData: FormData) => {
-    const result = await loginAction(formData);
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
 
-    if (result?.error) {
-        alert(result.error);
-    }
-    else {
-      router.push('/');
-    }
+    
   };
 
 
   return (
-    <form className={styles.form} action={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <TextField
         {...register('email', { required: 'Email is required' })}
         label="Email"
