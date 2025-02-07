@@ -1,5 +1,12 @@
+'use client'
+
+import { Typography } from "@mui/material";
+import ThemeWrapper from "./theme/ThemeWrapper";
+
 export default function Home() {
   return (
-    <h1>App</h1>
+    <ThemeWrapper>
+      <Typography>App</Typography>
+    </ThemeWrapper>
   );
 }

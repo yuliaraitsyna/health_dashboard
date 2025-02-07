@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react'
+import { Typography } from '@mui/material';
 import { fetchUserHeartRateRecords, fetchUsers } from '../lib/database';
-import Loading from './loading';
+import ThemeWrapper from '../theme/ThemeWrapper';
 import DashboardSkeleton from '../ui/dashboard/DashboardSkeleton/DashboardSkeleton';
 
 export default async function Page() {
@@ -11,8 +11,9 @@ export default async function Page() {
 
     console.log(users, records)
   return (
-    <Suspense fallback={<Loading />}>
-        <DashboardSkeleton />
-    </Suspense>
+    <ThemeWrapper>
+      <Typography variant="h3" ml={'20px'}>Dashboard</Typography>
+      <DashboardSkeleton />
+    </ThemeWrapper>
   )
 }
