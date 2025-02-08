@@ -1,12 +1,31 @@
-'use client'
+"use client";
 
-import { Typography } from "@mui/material";
-import ThemeWrapper from "./theme/ThemeWrapper";
+import styles from './page.module.css';
 
-export default function Home() {
+import { signIn, signOut, useSession } from "next-auth/react";
+import {SignInWidget} from "./components/AuthWidgets/SignInWidget/SignInWidget";
+import { SignOutWidget } from "./components/AuthWidgets/SignOutWidget/SignOutWidget";
+import { Container } from "@mui/material";
+import ThemeWrapper from './theme/ThemeWrapper';
+
+export default function Dashboard() {
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
   return (
     <ThemeWrapper>
-      <Typography>App</Typography>
+      <Container className={styles.container}>
+        {
+          session 
+          ? 
+          <SignOutWidget onClick={() => signOut()} username={session.user?.email} />
+          :
+          <SignInWidget onClick={() => signIn('google')}/>
+        }
+      </Container>
     </ThemeWrapper>
-  );
+  )
 }

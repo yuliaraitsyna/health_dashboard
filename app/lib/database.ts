@@ -1,43 +1,47 @@
-import { neon } from '@neondatabase/serverless';
-import { HeartRateRecord, User } from './definitions';
+import { User } from './definitions';
+import { Pool } from "pg";
 
-const sql = neon(process.env.DATABASE_URL!);
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+});
 
-export async function fetchUsers(): Promise<User[]> {
+export default pool;
+
+export async function addUserToDB(email: string) {
     try {
-        const users = await sql`SELECT * FROM users`;
-        return users.map(user => ({
-            id: user.id,
-            username: user.username
-        }));
-    }
-    catch (err) {
-        console.error(err);
-        return [];
+        const query = `
+            INSERT INTO users (email)
+            VALUES ($1)
+        `;
+        await pool.query(query, [email]);
+    } catch (error) {
+        console.error("Error adding user to DB:", error);
     }
 }
 
-export async function fetchUserHeartRateRecords(userId: number): Promise<HeartRateRecord[]> {
+export async function getUserFromDB(email: string): Promise<User | null> {
     try {
-        const records = await sql`
-            SELECT heart_data.*, users.*
-            FROM heart_data
-            JOIN users ON users.id = heart_data.user_id
-            WHERE heart_data.user_id = ${userId}
+        const query = `
+            SELECT * FROM users
+            WHERE email = $1;
         `;
-
-        return records.map(record => ({
-            id: record.id,
-            heartRate: record.heart_rate,
-            date: new Date(record.date),
-            user: {
-                id: record.user_id,
-                username: record.username
-            }
-        }));
+        const result = await pool.query(query, [email]);
+        return result.rows[0];
+    } catch (error) {
+        console.error("Error fetching user from DB:", error);
+        return null;
     }
-    catch (err) {
-        console.error(err);
-        return [];
+}
+
+export async function deleteUserFromDB(id: number) {
+    try {
+        const query = `
+            DELETE FROM users
+            WHERE id = $1;
+        `;
+        await pool.query(query, [id]);
+    } catch (error) {
+        console.error("Error deleting user from DB:", error);
     }
 }
