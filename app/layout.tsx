@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-          <SessionProvider>
+          <SessionProvider refetchInterval={5*60}>
             {children}
           </SessionProvider>
       </body>

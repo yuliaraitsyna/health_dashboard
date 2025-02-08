@@ -1,3 +1,4 @@
+import { addUserToDB, getUserFromDB } from "@/app/lib/database";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -6,6 +7,13 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "select_account",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
@@ -13,7 +21,29 @@ const handler = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
-    
+    async signIn({ user }) {
+      if (user.email) {
+        const existingUser = await getUserFromDB(user.email);
+        if (!existingUser) {
+          await addUserToDB(user.email);
+        }
+      }
+      return true;
+    },
+
+    async jwt({ token, user }) {
+      if (user) {
+        token.email = user.email;
+      }
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.email = token.email as string;
+      }
+      return session;
+    },
   }
 });
 

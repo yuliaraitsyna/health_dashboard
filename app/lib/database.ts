@@ -8,26 +8,25 @@ const pool = new Pool({
 
 export default pool;
 
-export async function addUserToDB(firebaseUid: string, email: string) {
+export async function addUserToDB(email: string) {
     try {
         const query = `
-            INSERT INTO users (firebase_uid, email)
-            VALUES ($1, $2)
-            ON CONFLICT (firebase_uid) DO NOTHING;
+            INSERT INTO users (email)
+            VALUES ($1)
         `;
-        await pool.query(query, [firebaseUid, email]);
+        await pool.query(query, [email]);
     } catch (error) {
         console.error("Error adding user to DB:", error);
     }
 }
 
-export async function getUserFromDB(firebaseUid: string): Promise<User | null> {
+export async function getUserFromDB(email: string): Promise<User | null> {
     try {
         const query = `
             SELECT * FROM users
-            WHERE firebase_uid = $1;
+            WHERE email = $1;
         `;
-        const result = await pool.query(query, [firebaseUid]);
+        const result = await pool.query(query, [email]);
         return result.rows[0];
     } catch (error) {
         console.error("Error fetching user from DB:", error);
@@ -35,13 +34,13 @@ export async function getUserFromDB(firebaseUid: string): Promise<User | null> {
     }
 }
 
-export async function deleteUserFromDB(firebaseUid: string) {
+export async function deleteUserFromDB(id: number) {
     try {
         const query = `
             DELETE FROM users
-            WHERE firebase_uid = $1;
+            WHERE id = $1;
         `;
-        await pool.query(query, [firebaseUid]);
+        await pool.query(query, [id]);
     } catch (error) {
         console.error("Error deleting user from DB:", error);
     }
