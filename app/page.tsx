@@ -1,7 +1,28 @@
-'use client'
+"use client";
 
-import LogoutButton from "./components/LogoutButton/LogoutButton";
+import styles from './page.module.css';
+
+import { signIn, signOut, useSession } from "next-auth/react";
+import {SignInWidget} from "./components/AuthWidgets/SignInWidget/SignInWidget";
+import { SignOutWidget } from "./components/AuthWidgets/SignOutWidget/SignOutWidget";
+import { Container } from "@mui/material";
 
 export default function Dashboard() {
-  return <LogoutButton/>;
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <Container className={styles.container}>
+      {
+        session 
+        ? 
+        <SignOutWidget onClick={() => signOut()} username={session.user?.email} />
+        :
+        <SignInWidget onClick={() => signIn('google')}/>
+      }
+    </Container>
+  )
 }
