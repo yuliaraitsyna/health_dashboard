@@ -1,6 +1,11 @@
 "use client";
 
+import styles from './page.module.css';
+
 import { signIn, signOut, useSession } from "next-auth/react";
+import {SignInWidget} from "./components/AuthWidgets/SignInWidget/SignInWidget";
+import { SignOutWidget } from "./components/AuthWidgets/SignOutWidget/SignOutWidget";
+import { Container } from "@mui/material";
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
@@ -9,19 +14,15 @@ export default function Dashboard() {
     return <p>Loading...</p>;
   }
 
-  if (session) {
-    return (
-      <>
-        <p>Signed in as {session.user?.email}</p>
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
-
   return (
-    <>
-      <p>Not signed in</p>
-      <button onClick={() => signIn("google")}>Sign in</button>
-    </>
-  );
+    <Container className={styles.container}>
+      {
+        session 
+        ? 
+        <SignOutWidget onClick={() => signOut()} username={session.user?.email} />
+        :
+        <SignInWidget onClick={() => signIn('google')}/>
+      }
+    </Container>
+  )
 }

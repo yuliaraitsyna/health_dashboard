@@ -22,13 +22,18 @@ const handler = NextAuth({
   },
   callbacks: {
     async signIn({ user }) {
-      if (user.email) {
-        const existingUser = await getUserFromDB(user.email);
-        if (!existingUser) {
-          await addUserToDB(user.email);
+      try {
+        if (user.email) {
+          const existingUser = await getUserFromDB(user.email);
+          if (!existingUser) {
+            await addUserToDB(user.email);
+          }
         }
+        return true;
+      } catch (error) {
+        console.error("Error during sign-in:", error);
+        return false;
       }
-      return true;
     },
 
     async jwt({ token, user }) {

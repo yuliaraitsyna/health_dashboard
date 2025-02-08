@@ -12,6 +12,7 @@
     "@auth/pg-adapter": "^1.7.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
     "@neondatabase/serverless": "^0.10.4",
     "next": "15.1.6",
