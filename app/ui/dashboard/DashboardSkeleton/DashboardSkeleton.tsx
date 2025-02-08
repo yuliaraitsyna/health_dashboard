@@ -3,6 +3,7 @@ import styles from "./DashboardSkeleton.module.css";
 import { HeartWidget } from "../Widgets/HeartWidget/HeartWidget";
 import { InfoWidget } from "../Widgets/InfoWidget/InfoWidget";
 import { AuthorWidget } from "../Widgets/AuthorWidget/AuthorWidget";
+import { FeaturesWidget } from "../Widgets/FeaturesWidget/FeaturesWidget";
 
 export default function DashboardSkeleton() {
   return (
@@ -10,7 +11,7 @@ export default function DashboardSkeleton() {
       <HeartWidget className={styles.widget}  />
       <InfoWidget className={styles.widgetLarge} />
       <AuthorWidget className={styles.widget} />
-      <div className={styles.widgetWide}>Wide Widget</div>
+      <FeaturesWidget className={styles.widgetWide} />
       <div className={styles.widget}>Small Widget</div>
     </div>
   );

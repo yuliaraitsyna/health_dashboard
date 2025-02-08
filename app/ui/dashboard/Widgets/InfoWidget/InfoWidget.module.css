@@ -7,3 +7,8 @@
 .infoWidget > p {
     text-align: justify;
 }
+
+.image {
+    margin-top: 40px;
+    align-self: center;
+}
