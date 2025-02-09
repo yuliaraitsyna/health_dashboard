@@ -16,7 +16,7 @@ const HeartWidget: React.FC<WidgetProps> = ({className}) => {
           Manage your heart rate and other statistic. The application provides charts for you heart 
           rate to easily understand your condition and get recommendations.
         </Typography>
-        <Link href='/heart_rate'>Find out more</Link>
+        <Link href='/dashboard/heart_rate'>Find out more</Link>
     </div>
   )
 }
