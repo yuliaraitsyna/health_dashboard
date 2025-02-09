@@ -1,9 +1,19 @@
 .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
     box-shadow: 0 2px 4px var(--shadow-color);
+
+    height: 60px;
 }
 
 .logo {
     display: flex;
     gap: 10px;
+    align-items: center;
 }

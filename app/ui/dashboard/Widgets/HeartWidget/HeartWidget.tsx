@@ -5,7 +5,8 @@ import styles from './HeartWidget.module.css';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import clsx from 'clsx';
 import { WidgetProps } from '../Widgets.types';
-import { Link, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import Link from 'next/link';
 
 const HeartWidget: React.FC<WidgetProps> = ({className}) => {
   return (
@@ -15,7 +16,7 @@ const HeartWidget: React.FC<WidgetProps> = ({className}) => {
           Manage your heart rate and other statistic. The application provides charts for you heart 
           rate to easily understand your condition and get recommendations.
         </Typography>
-        <Link>Find out more</Link>
+        <Link href='/heart_rate'>Find out more</Link>
     </div>
   )
 }

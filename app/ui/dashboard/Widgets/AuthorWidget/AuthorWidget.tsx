@@ -16,9 +16,9 @@ const AuthorWidget: React.FC<WidgetProps> = ({className}) => {
             This application was made by 
         </Typography>
         <span>Yuliya Raitsyna</span>
-        <GitHubIcon className={styles.icon}>
-            <Link href='https://github.com/yuliaraitsyna'></Link>
-        </GitHubIcon>
+        <Link href='https://github.com/yuliaraitsyna' className={styles.link}>
+          <GitHubIcon className={styles.icon}/>
+        </Link>
     </div>
   )
 }

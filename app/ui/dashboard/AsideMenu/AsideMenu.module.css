@@ -1,16 +1,18 @@
 .menu {
+    position: sticky;
+    top: 60px;
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 0;
     width: 200px;
-    height: 100%;
+    height: calc(100% - 60px);
     gap: 30px;
     padding-top: 10px;
-    border-right: solid 1px var(--shadow-color);
+    border-right: solid 1px var(--menu-hover-color);
     transition: width 0.5s ease-in-out;
     overflow: hidden;
-    background-color: white;
+    background-color: var(--menu-color);
 }
 
 .menu.closed {
@@ -21,7 +23,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
     list-style: none;
     opacity: 1;
@@ -37,5 +39,5 @@
 }
 
 .menu nav ul li:hover {
-    background-color: var(--hover-color);
+    background-color: var(--menu-hover-color);
 }

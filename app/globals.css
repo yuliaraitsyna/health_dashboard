@@ -1,11 +1,22 @@
 :root {
   --shadow-color: rgba(0, 0, 0, 0.2);
   --hover-color: rgba(213, 213, 213, 0.2);
+  --html-color: #81aafd;
+  --menu-color: #d1e2fc;
+  --menu-hover-color: #b5cdf1;
+  --accent-color: #3943b7;
 }
 
-html, body {
+html {
   padding: 0;
   margin: 0;
+  height: fit-content;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 nav > ul {
@@ -17,8 +28,4 @@ nav > ul {
 a {
   color: black;
   text-decoration: none;
-}
-
-a:visited, a:hover {
-  color: black;
 }

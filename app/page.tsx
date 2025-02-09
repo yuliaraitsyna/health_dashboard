@@ -7,12 +7,14 @@ import {SignInWidget} from "./components/AuthWidgets/SignInWidget/SignInWidget";
 import { SignOutWidget } from "./components/AuthWidgets/SignOutWidget/SignOutWidget";
 import { Container } from "@mui/material";
 import ThemeWrapper from './theme/ThemeWrapper';
+import Loading from './ui/loading/loading';
+
 
 export default function Dashboard() {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
