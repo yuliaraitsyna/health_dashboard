@@ -6,7 +6,7 @@ export type User = {
 
 export type HeartRateData = {
     id: number;
-    value: number;
+    hr: number;
     date: Date;
     user: User;
 }
