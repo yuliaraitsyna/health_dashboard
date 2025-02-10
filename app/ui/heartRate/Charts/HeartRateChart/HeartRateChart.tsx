@@ -2,39 +2,15 @@
 
 import styles from './HeartRateChart.module.css';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { Chart, ChartConfiguration, registerables } from 'chart.js'
-import { HeartRateData } from '@/app/lib/definitions';
+import { ChartProps } from '../ChartProps.types';
 
 Chart.register(...registerables);
 
-export default function HeartRateChart() {
+export const HeartRateChart: React.FC<ChartProps> = ({data}) => {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstanceRef = useRef<Chart | null>(null);
-  const [data, setData] = useState<HeartRateData[]>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("/api/heart_rate");
-        const result = await response.json();
-
-        if (Array.isArray(result.heartData)) {
-            setData(result.heartData);
-        } else if (Array.isArray(result)) {
-            setData(result);
-        } else {
-            console.error("Unexpected data format:", result);
-        }
-
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-  
-    fetchData();
-  }, []);
-  
 
   useEffect(() => {
     if(!chartRef.current) return;
@@ -48,8 +24,6 @@ export default function HeartRateChart() {
     const labels = data.map(record => new Date(record.date).toDateString());
     const values = data.map(record => record.hr);
 
-    console.log(values)
-
     const config: ChartConfiguration = {
         type: "bar",
         data: {
@@ -58,16 +32,25 @@ export default function HeartRateChart() {
                 {
                     label: "Heart rate",
                     data: values,
-                    backgroundColor: "#555"
+                    backgroundColor: "#fff",
                 }
             ]
         },
         options: {
+            layout: {
+                padding: 10,
+            },
             responsive: true,
             plugins: {
                 title: {
                     display: true,
                     text: "Heart data",
+                    color: '#3943b7',
+                
+                },
+                legend: {
+                    position:'bottom',
+                    align: 'center',
                 }
             }
         }
