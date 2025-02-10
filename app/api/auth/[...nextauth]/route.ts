@@ -2,7 +2,7 @@ import { addUserToDB, getUserFromDB } from "@/app/lib/database";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({
+const auth = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -52,5 +52,5 @@ const handler = NextAuth({
   }
 });
 
-
-export { handler as GET, handler as POST };
+export {auth as GET, auth as POST};
+export default auth;

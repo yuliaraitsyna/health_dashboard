@@ -45,3 +45,20 @@ export async function deleteUserFromDB(id: number) {
         console.error("Error deleting user from DB:", error);
     }
 }
+
+export async function getUserHeartData(id: number) {
+    try {
+        const query = `
+            SELECT hd.id, hd.hr, hd.date
+            FROM heart_data hd
+            JOIN users u ON hd.user_id = u.id
+            WHERE hd.user_id = $1;
+        `;
+
+        const result = await pool.query(query, [id]);
+        return result.rows;
+    } catch (error) {
+        console.error("Error fetching heart data:", error);
+        throw new Error("Database query failed");
+    }
+}

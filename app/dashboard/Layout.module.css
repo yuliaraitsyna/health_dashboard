@@ -4,7 +4,7 @@
     width: 100vw;
     background-color: var(--html-color);
     margin: 0;
-    overflow: hidden;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
