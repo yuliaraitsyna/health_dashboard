@@ -10,3 +10,8 @@ export type HeartRateData = {
     date: Date;
     user: User;
 }
+
+export type HeartRateVariabilityData = {
+    sdnn: number;
+    rmssd: number;
+}
