@@ -1,0 +1,19 @@
+.widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--chart-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    margin: 10px;
+    padding: 10px;
+}
+
+.number {
+    color: var(--accent-color);
+    margin-left: 10px;
+}
+
+.widget > h5 {
+    color: var(--accent-color);
+}

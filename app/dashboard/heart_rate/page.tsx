@@ -7,7 +7,7 @@ import { Container } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Loading from '@/app/ui/loading/loading';
 import { HeartRateData } from '@/app/lib/definitions';
-// import HRVWidget from '@/app/ui/heartRate/HRVWidget/HRVWidget';
+import HRVWidget from '@/app/ui/heartRate/HRVWidget/HRVWidget';
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -44,7 +44,7 @@ export default function Page() {
   return (
     <Container className={styles.container}>
         <HeartRateChart data={data} />
-        {/* <HRVWidget /> */}
+        <HRVWidget />
     </Container>
   )
 }
