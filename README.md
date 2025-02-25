@@ -15,6 +15,8 @@ Authentication is provided via `Google API`.
 
 ## Preview
 <img width="1256" alt="image" src="https://github.com/user-attachments/assets/9e6b9206-bc7c-48c9-a8a4-b52142f6a3b8" />
+<img width="1259" alt="Снимок экрана 2025-02-26 в 00 05 13" src="https://github.com/user-attachments/assets/0993d9fb-b43d-4d38-b42e-70681347d9cc" />
+
 
 
 ## Technologies
