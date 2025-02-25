@@ -24,13 +24,13 @@ export default function AsideMenu() {
       <nav>
         <ul>
             <li>
-                <Link href='/heart_rate'>Heart rate</Link>
+                <Link href='/dashboard/heart_rate'>Heart rate</Link>
             </li>
             <li>
-                <Link href='/stress'>Stress</Link>
+                <Link href='/dashboard/stress'>Stress</Link>
             </li>
             <li>
-                <Link href='/stamina'>Stamina</Link>
+                <Link href='/dashboard/stamina'>Stamina</Link>
             </li>
         </ul>
       </nav>
