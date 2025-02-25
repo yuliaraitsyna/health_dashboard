@@ -6,15 +6,14 @@ import { HeartRateData, HeartRateVariabilityData } from "@/app/lib/definitions";
 import { getServerSession } from "next-auth/next";
 
 const calculateSDNN = (RRIntervals: number[]) => {
-    if (RRIntervals.length < 2) return 0;  // Need at least two intervals to calculate standard deviation
+    if (RRIntervals.length < 2) return 0; 
 
     const meanRR = RRIntervals.reduce((sum, rr) => sum + rr, 0) / RRIntervals.length;
 
-    // Calculate the variance (use sample variance formula: divide by N-1)
     const variance = RRIntervals.reduce((sum, rr) => sum + Math.pow(rr - meanRR, 2), 0) / (RRIntervals.length - 1);
 
-    return Math.sqrt(variance);  // SDNN is the square root of the variance
-};
+    return Math.sqrt(variance);
+}
 
 
 function calculateRMSSD(rrIntervals: number[]) {
@@ -23,7 +22,7 @@ function calculateRMSSD(rrIntervals: number[]) {
     const meanSquaredDiff = squaredDiffs.reduce((sum, val) => sum + val, 0) / squaredDiffs.length;
 
     return Math.sqrt(meanSquaredDiff);
-  }
+}
 
 export async function GET() {
     try {
